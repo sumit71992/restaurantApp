@@ -1,6 +1,6 @@
 import classes from "./AvailableMeals.module.css";
 import Card from "../UI/Card";
-import MealItems from "./MealItems";
+import MealItems from "./MealItems/MealItems";
 
 const DUMMY_MEALS = [
   {
