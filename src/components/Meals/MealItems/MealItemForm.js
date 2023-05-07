@@ -1,3 +1,4 @@
+import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 import classes from "./MealItemForm.module.css";
 
@@ -15,7 +16,7 @@ const MealItemForm = () => {
           defaultValue: "1",
         }}
       />
-      <button>+ Add</button>
+      <Button button={"+ Add"}/>
     </form>
   );
 };
