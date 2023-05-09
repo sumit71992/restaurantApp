@@ -1,6 +1,7 @@
+import './Button.module.css';
 const Button = (props) =>{
   return (
-    <button>{props.button}</button>
+    <button onClick={()=>{props.onHideCart();}}>{props.button}</button>
   )
 }
 
