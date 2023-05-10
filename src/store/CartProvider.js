@@ -1,11 +1,18 @@
+import { useState } from "react";
 import CartContext from "./cartContext";
 
-function CartProvider(props) {
-  const addItemHandler = (item) => {};
+const CartProvider = (props) => {
+  const [items, setItems] = useState([]);
+
+  const addItemHandler = (item) => {
+    return setItems((prevItems)=>{
+      return [...prevItems, item]
+    });
+  };
   const removeItemHandler = (id) => {};
-  
+
   const cartContext = {
-    items: [],
+    items: items,
     totalAmount: 0,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
@@ -16,6 +23,6 @@ function CartProvider(props) {
       {props.children}
     </CartContext.Provider>
   );
-}
+};
 
 export default CartProvider;
