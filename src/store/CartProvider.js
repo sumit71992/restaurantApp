@@ -5,9 +5,17 @@ const CartProvider = (props) => {
   const [items, setItems] = useState([]);
 
   const addItemHandler = (item) => {
-    return setItems((prevItems)=>{
-      return [...prevItems, item]
-    });
+    if (items.length > 0) {
+      items.map((el) => {
+        if (el.id !== item.id) {
+          return setItems([item, ...items]);
+        } else {
+          return setItems((el.quantity = +el.quantity + +item.quantity));
+        }
+      });
+    } else {
+      return setItems([item, ...items]);
+    }
   };
   const removeItemHandler = (id) => {};
 
@@ -20,6 +28,7 @@ const CartProvider = (props) => {
 
   return (
     <CartContext.Provider value={cartContext}>
+      {console.log(items)}
       {props.children}
     </CartContext.Provider>
   );
