@@ -6,11 +6,11 @@ const CartProvider = (props) => {
 
   const addItemHandler = (item) => {
     if (items.length > 0) {
-      items.map((el) => {
+      items.map((el,i) => {
         if (el.id !== item.id) {
           return setItems([item, ...items]);
         } else {
-          return setItems((el.quantity = +el.quantity + +item.quantity));
+          return setItems(el.quantity = +el.quantity + +item.quantity);
         }
       });
     } else {
