@@ -6,18 +6,28 @@ const CartProvider = (props) => {
 
   const addItemHandler = (item) => {
     if (items.length > 0) {
-      items.map((el,i) => {
+      items.map((el, i) => {
         if (el.id !== item.id) {
-          return setItems([item, ...items]);
+          return setItems([...items,item]);
         } else {
-          return setItems(el.quantity = +el.quantity + +item.quantity);
+          console.log("index",i);
+          const obj = { ...items[i] };
+          obj.quantity = +obj.quantity + +item.quantity;
+          items[i] = obj;
+          console.log("updated",items[i]);
+          return setItems(items);
         }
       });
     } else {
-      return setItems([item, ...items]);
+      return setItems([...items,item]);
     }
   };
-  const removeItemHandler = (id) => {};
+  const removeItemHandler = (id) => {
+    const arr = items.filter(el=>{
+      return el.id !== id;
+    })
+    setItems(arr);
+  };
 
   const cartContext = {
     items: items,

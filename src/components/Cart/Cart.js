@@ -11,11 +11,33 @@ const Cart = (props) => {
     totalAmount += item.price * item.quantity;
   });
 
+  const removeCartHandler = (event) => {
+    cartCtx.removeItem(event.target.id);
+  };
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => (
-        <li>
-          {item.name} {item.price} {item.quantity}
+        <li id={item.id}>
+          <div>
+            <div>{item.name} </div>
+            <div className={classes["cart-items-details"]}>
+              <div className={classes["cart-items-price"]}>
+                $ {item.price.toFixed(2)}
+              </div>
+              <div className={classes.quantity}>x {item.quantity}</div>
+            </div>
+          </div>
+          <div>
+            <button
+              id={item.id}
+              className={classes.minus}
+              onClick={removeCartHandler}
+            >
+              -
+            </button>
+            <button>+</button>
+          </div>
         </li>
       ))}
     </ul>
