@@ -3,29 +3,25 @@ import CartContext from "./cartContext";
 
 const CartProvider = (props) => {
   const [items, setItems] = useState([]);
-
   const addItemHandler = (item) => {
-    if (items.length > 0) {
-      items.map((el, i) => {
-        if (el.id !== item.id) {
-          return setItems([...items,item]);
-        } else {
-          console.log("index",i);
-          const obj = { ...items[i] };
-          obj.quantity = +obj.quantity + +item.quantity;
-          items[i] = obj;
-          console.log("updated",items[i]);
-          return setItems(items);
+    setItems((prevItems) => {
+      if (prevItems.length < 1) {
+        return [...items, item];
+      } else {
+        for (let i = 0; i < prevItems.length; i++) {
+          if (prevItems[i].id === item.id) {
+            prevItems[i].quantity = +prevItems[i].quantity + +item.quantity;
+            return prevItems;
+          }
         }
-      });
-    } else {
-      return setItems([...items,item]);
-    }
+        return [...prevItems, item];
+      }
+    });
   };
   const removeItemHandler = (id) => {
-    const arr = items.filter(el=>{
+    const arr = items.filter((el) => {
       return el.id !== id;
-    })
+    });
     setItems(arr);
   };
 
