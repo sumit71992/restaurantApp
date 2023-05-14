@@ -25,7 +25,7 @@ const MealItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <Button button={"+ Add"} onAddCart={addItemToCart}/>
+      <Button onClick={addItemToCart}>+ Add</Button>
     </form>
   );
 };

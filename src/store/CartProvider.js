@@ -11,7 +11,7 @@ const CartProvider = (props) => {
         for (let i = 0; i < prevItems.length; i++) {
           if (prevItems[i].id === item.id) {
             prevItems[i].quantity = +prevItems[i].quantity + +item.quantity;
-            return prevItems;
+            return [...prevItems];
           }
         }
         return [...prevItems, item];
@@ -34,7 +34,6 @@ const CartProvider = (props) => {
 
   return (
     <CartContext.Provider value={cartContext}>
-      {console.log(items)}
       {props.children}
     </CartContext.Provider>
   );
